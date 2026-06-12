@@ -1,9 +1,13 @@
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-NASA_API_KEY = os.getenv('NASA_API_KEY','DEMO_KEY')
+try:
+    NASA_API_KEY = st.secrets["NASA_API_KEY"]
+except:
+    NASA_API_KEY = os.getenv('NASA_API_KEY', 'DEMO_KEY')
 if NASA_API_KEY == 'DEMO_KEY':
 	print("⚠️  Warning: Using DEMO_KEY - limited API calls allowed")
 	print("   Get your own key at https://api.nasa.gov for full access")
